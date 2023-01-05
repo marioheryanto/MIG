@@ -42,7 +42,7 @@ func (r ActivityRepository) PingDB() error {
 
 func (r ActivityRepository) CreateActivity(request model.Activity, userId string) error {
 	query, args, err := squirrel.
-		Insert("MIG.activities").
+		Insert("activities").
 		Columns("user_id, description, tanggal, dari, sampai, created_at").
 		Values(userId, request.Description, request.Tanggal, request.Dari, request.Sampai, request.CreatedAt).
 		ToSql()
@@ -63,7 +63,7 @@ func (r ActivityRepository) CreateActivity(request model.Activity, userId string
 
 func (r ActivityRepository) EditActivity(request model.Activity) error {
 	query, args, err := squirrel.
-		Update("MIG.activities").
+		Update("activities").
 		Set("description", request.Description).
 		Set("tanggal", request.Tanggal).
 		Set("dari", request.Dari).
@@ -88,7 +88,7 @@ func (r ActivityRepository) EditActivity(request model.Activity) error {
 
 func (r ActivityRepository) DeleteActivity(Id string) error {
 	query, args, err := squirrel.
-		Delete("MIG.activities").
+		Delete("activities").
 		Where("id = ?", Id).
 		ToSql()
 
@@ -111,7 +111,7 @@ func (r ActivityRepository) GetRangeActivity(from, to, id string) ([]model.Activ
 
 	query, args, err := squirrel.
 		Select("description, tanggal, dari, sampai, created_at, updated_at").
-		From("MIG.activities").
+		From("activities").
 		Where("user_id = ? AND tanggal >= ? AND tanggal <= ?", id, from, to).ToSql()
 
 	if err != nil {
@@ -150,7 +150,7 @@ func (r ActivityRepository) GetRangeActivity(from, to, id string) ([]model.Activ
 func (r ActivityRepository) GetActivityWithId(Id interface{}) (model.Activity, error) {
 	query, args, err := squirrel.
 		Select("description, tanggal, dari, sampai, created_at, updated_at").
-		From("MIG.activities").
+		From("activities").
 		Where("id = ?", Id).ToSql()
 
 	if err != nil {
