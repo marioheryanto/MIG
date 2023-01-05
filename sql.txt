@@ -1,0 +1,30 @@
+CREATE DATABASE MIG;
+
+
+CREATE TABLE users(  
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    password longblob NOT NULL
+);
+
+
+
+CREATE TABLE activities(  
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    description varchar(255) NOT NULL,
+    tanggal DATE NOT NULL,
+    dari TIME NOT NULL,
+    sampai TIME NOT NULL,
+    user_id BIGINT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME
+);
+
+Create table absensi(
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    check_in DATETIME,
+    check_out DATETIME,
+    user_id BIGINT NOT NULL,
+    tanggal DATE
+);
