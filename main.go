@@ -35,5 +35,5 @@ func main() {
 	route.AbsensiRoutes(app, absensiController)
 	route.ActivityRoutes(app, activityController)
 
-	app.Listen(":3000")
+	app.Listen("0.0.0.0:$PORT")
 }
