@@ -73,7 +73,7 @@ func (l UserLibrary) Login(request model.UserRequest) (fiber.Cookie, error) {
 		return cookie, helper.ReplaceServiceErrorForLogin(err)
 	}
 
-	ttl := time.Now().In(helper.LoadLocationJakarta()).Add(15 * time.Minute)
+	ttl := time.Now().Add(15 * time.Minute)
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
 		Issuer:    strconv.Itoa(int(user.Id)),

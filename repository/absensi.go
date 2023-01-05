@@ -41,7 +41,7 @@ func (r AbsensiRepository) PingDB() error {
 }
 
 func (r AbsensiRepository) CheckInOut(check string, id string) error {
-	now := time.Now().In(helper.LoadLocationJakarta())
+	now := time.Now()
 	cico := now.Format("2006-01-02 15:04:05")
 	tanggal := now.Format("2006-01-02")
 
@@ -127,7 +127,7 @@ func (r AbsensiRepository) GetRangeAbsensi(from, to, id string) ([]model.Absensi
 }
 
 func (r AbsensiRepository) CreateAbsensi(check string, id string) error {
-	now := time.Now().In(helper.LoadLocationJakarta())
+	now := time.Now()
 	cico := now.Format("2006-01-02 15:04:05")
 	tanggal := now.Format("2006-01-02")
 

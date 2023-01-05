@@ -111,7 +111,7 @@ func (controller UserController) Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
 		Name:     "jwt",
 		Value:    "",
-		Expires:  time.Now().In(helper.LoadLocationJakarta()).Add(-5 * time.Minute),
+		Expires:  time.Now().Add(-5 * time.Minute),
 		HTTPOnly: true,
 	}
 

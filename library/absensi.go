@@ -28,7 +28,7 @@ func NewAbsensiLibrary(repo repository.AbsensiRepositoryInterface) AbsensiLibrar
 
 func (l AbsensiLibrary) CheckInOut(tokenString string, check string) error {
 	var err error
-	now := time.Now().In(helper.LoadLocationJakarta()).Format("2006-01-02")
+	now := time.Now().Format("2006-01-02")
 
 	claims, err := helper.ParseTokenToClaims(tokenString)
 	if err != nil {

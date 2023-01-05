@@ -27,7 +27,7 @@ func NewActivityLibrary(repo repository.ActivityRepositoryInterface) ActivityLib
 }
 
 func (l ActivityLibrary) Create(tokenString string, request model.Activity) error {
-	timeNow := time.Now().In(helper.LoadLocationJakarta())
+	timeNow := time.Now()
 	request.CreatedAt = timeNow.Format("2006-01-02 15:04:05")
 
 	claims, err := helper.ParseTokenToClaims(tokenString)
@@ -49,7 +49,7 @@ func (l ActivityLibrary) Edit(tokenString string, request model.Activity) error 
 		return err
 	}
 
-	timeNow := time.Now().In(helper.LoadLocationJakarta())
+	timeNow := time.Now()
 	request.UpdatedAt = timeNow.Format("2006-01-02 15:04:05")
 
 	err = l.Repo.EditActivity(request)
