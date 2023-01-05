@@ -40,7 +40,7 @@ func (r UserRepository) PingDB() error {
 }
 
 func (r UserRepository) CreateUser(user model.User) error {
-	query, args, err := squirrel.Insert("users").Columns("name,email,password").Values(user.Name, user.Email, user.Password).ToSql()
+	query, args, err := squirrel.Insert("MIG.users").Columns("name,email,password").Values(user.Name, user.Email, user.Password).ToSql()
 	if err != nil {
 		return helper.NewServiceError(http.StatusInternalServerError, err.Error())
 	}
@@ -56,7 +56,7 @@ func (r UserRepository) CreateUser(user model.User) error {
 }
 
 func (r UserRepository) GetUserWithEmail(user *model.User) error {
-	query, args, err := squirrel.Select("id,name,password").From("users").Where(squirrel.Eq{"email": user.Email}).ToSql()
+	query, args, err := squirrel.Select("id,name,password").From("MIG.users").Where(squirrel.Eq{"email": user.Email}).ToSql()
 	if err != nil {
 		return helper.NewServiceError(http.StatusInternalServerError, err.Error())
 	}
@@ -74,7 +74,7 @@ func (r UserRepository) GetUserWithEmail(user *model.User) error {
 }
 
 func (r UserRepository) GetUserWithID(id string, user *model.User) error {
-	query, args, err := squirrel.Select("email,name,password").From("users").Where(squirrel.Eq{"id": id}).ToSql()
+	query, args, err := squirrel.Select("email,name,password").From("MIG.users").Where(squirrel.Eq{"id": id}).ToSql()
 	if err != nil {
 		return helper.NewServiceError(http.StatusInternalServerError, err.Error())
 	}
@@ -94,7 +94,7 @@ func (r UserRepository) GetUserWithID(id string, user *model.User) error {
 func (r UserRepository) CheckUserExistWithEmail(email string) (bool, error) {
 	var userName string
 
-	query, args, err := squirrel.Select("name").From("users").Where(squirrel.Eq{"email": email}).ToSql()
+	query, args, err := squirrel.Select("name").From("MIG.users").Where(squirrel.Eq{"email": email}).ToSql()
 	if err != nil {
 		return false, helper.NewServiceError(http.StatusInternalServerError, err.Error())
 	}

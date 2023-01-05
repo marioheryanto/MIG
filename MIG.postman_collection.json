@@ -24,11 +24,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/register",
+							"raw": "https://mig-production.up.railway.app/user/register",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"register"
@@ -52,11 +55,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/login",
+							"raw": "https://mig-production.up.railway.app/user/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"login"
@@ -83,11 +89,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/home",
+							"raw": "https://mig-production.up.railway.app/user/home",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"home"
@@ -111,11 +120,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/logout",
+							"raw": "https://mig-production.up.railway.app/user/logout",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"logout"
@@ -135,11 +147,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/absensi/check?check=out",
+							"raw": "https://mig-production.up.railway.app/absensi/check?check=out",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"absensi",
 								"check"
@@ -160,11 +175,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/absensi/all?year=2022&month=11",
+							"raw": "https://mig-production.up.railway.app/absensi/all?year=2022&month=11",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"absensi",
 								"all"
@@ -219,11 +237,14 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/activity/create",
+							"raw": "https://mig-production.up.railway.app/activity/create",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"activity",
 								"create"
@@ -268,11 +289,14 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/activity/edit",
+							"raw": "https://mig-production.up.railway.app/activity/edit",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"activity",
 								"edit"
@@ -287,11 +311,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/activity/delete?id=1",
+							"raw": "https://mig-production.up.railway.app/activity/delete?id=1",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"activity",
 								"delete"
@@ -312,11 +339,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/activity/all?from=2022-01-01&to=2023-01-05",
+							"raw": "https://mig-production.up.railway.app/activity/all?from=2022-01-01&to=2023-01-05",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"mig-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "3000",
 							"path": [
 								"activity",
 								"all"
