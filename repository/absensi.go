@@ -45,7 +45,7 @@ func (r AbsensiRepository) CheckInOut(check string, id string) error {
 	cico := now.Format("2006-01-02 15:04:05")
 	tanggal := now.Format("2006-01-02")
 
-	builder := squirrel.Update("absensi")
+	builder := squirrel.Update("MIG.absensi")
 
 	if check == "in" {
 		builder = builder.Set("check_in", cico)
@@ -72,7 +72,7 @@ func (r AbsensiRepository) GetAbsensi(tanggal, id string) (model.Absensi, error)
 	absensi := model.Absensi{}
 	absensiDB := model.AbsensiDB{}
 
-	query, args, err := squirrel.Select("id,check_in, check_out").From("absensi").Where(squirrel.Eq{"user_id": id, "tanggal": tanggal}).ToSql()
+	query, args, err := squirrel.Select("id,check_in, check_out").From("MIG.absensi").Where(squirrel.Eq{"user_id": id, "tanggal": tanggal}).ToSql()
 	if err != nil {
 		return absensi, helper.NewServiceError(http.StatusInternalServerError, err.Error())
 	}
@@ -92,7 +92,7 @@ func (r AbsensiRepository) GetAbsensi(tanggal, id string) (model.Absensi, error)
 func (r AbsensiRepository) GetRangeAbsensi(from, to, id string) ([]model.Absensi, error) {
 	absensiList := []model.Absensi{}
 
-	query, args, err := squirrel.Select("id, tanggal, check_in, check_out").From("absensi").Where("user_id = ? AND tanggal >= ? AND tanggal < ?", id, from, to).ToSql()
+	query, args, err := squirrel.Select("id, tanggal, check_in, check_out").From("MIG.absensi").Where("user_id = ? AND tanggal >= ? AND tanggal < ?", id, from, to).ToSql()
 	if err != nil {
 		return absensiList, err
 	}
@@ -131,7 +131,7 @@ func (r AbsensiRepository) CreateAbsensi(check string, id string) error {
 	cico := now.Format("2006-01-02 15:04:05")
 	tanggal := now.Format("2006-01-02")
 
-	builder := squirrel.Insert("absensi")
+	builder := squirrel.Insert("MIG.absensi")
 
 	if check == "in" {
 		builder = builder.Columns("tanggal, check_in, user_id").Values(tanggal, cico, id)
