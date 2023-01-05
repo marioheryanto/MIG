@@ -3,6 +3,7 @@ package library
 import (
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -32,7 +33,7 @@ func NewUserLibrary(repo repository.UserRepositoryInterface) UserLibraryInterfac
 func (l UserLibrary) Register(request model.UserRequest) error {
 	user := model.User{}
 	user.Name = request.Name
-	user.Email = request.Email
+	user.Email = strings.ToLower(request.Email)
 
 	exist, err := l.Repo.CheckUserExistWithEmail(request.Email)
 	if err != nil {
@@ -60,7 +61,7 @@ func (l UserLibrary) Register(request model.UserRequest) error {
 
 func (l UserLibrary) Login(request model.UserRequest) (fiber.Cookie, error) {
 	user := model.User{}
-	user.Email = request.Email
+	user.Email = strings.ToLower(request.Email)
 	cookie := fiber.Cookie{}
 
 	err := l.Repo.GetUserWithEmail(&user)
