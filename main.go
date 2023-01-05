@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/marioheryanto/MIG/controller"
@@ -35,5 +37,5 @@ func main() {
 	route.AbsensiRoutes(app, absensiController)
 	route.ActivityRoutes(app, activityController)
 
-	app.Listen("0.0.0.0:$PORT")
+	app.Listen("0.0.0.0:" + os.Getenv("PORT"))
 }
