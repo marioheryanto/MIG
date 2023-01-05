@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "2c553f67-c94f-40af-afb6-75b506c524f3",
+		"name": "MIG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15108045"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"budi\",\n    \"email\":\"budi@email.com\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"bambang@email.com\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Home",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/home",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Absensi",
+			"item": [
+				{
+					"name": "Absensi Check In / Out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/absensi/check?check=out",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"absensi",
+								"check"
+							],
+							"query": [
+								{
+									"key": "check",
+									"value": "out"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Absensi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/absensi/all?year=2022&month=11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"absensi",
+								"all"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2022"
+								},
+								{
+									"key": "month",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activity",
+			"item": [
+				{
+					"name": "Create Activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "research",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-01-04",
+									"type": "text"
+								},
+								{
+									"key": "dari",
+									"value": "13:00:00",
+									"type": "text"
+								},
+								{
+									"key": "sampai",
+									"value": "17:00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/activity/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activity",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Activity",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "research",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-01-04",
+									"type": "text"
+								},
+								{
+									"key": "dari",
+									"value": "13:00:00",
+									"type": "text"
+								},
+								{
+									"key": "sampai",
+									"value": "17:00:00",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/activity/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activity",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Activity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/activity/delete?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activity",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/activity/all?from=2022-01-01&to=2023-01-05",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activity",
+								"all"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-01-01"
+								},
+								{
+									"key": "to",
+									"value": "2023-01-05"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
