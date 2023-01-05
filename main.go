@@ -21,7 +21,7 @@ func main() {
 
 	userLibrary := library.NewUserLibrary(userRepository)
 	absensiLibrary := library.NewAbsensiLibrary(absensiRepository)
-	activityLibrary := library.NewActivityLibrary(activityRepository)
+	activityLibrary := library.NewActivityLibrary(activityRepository, absensiRepository)
 
 	userController := controller.NewUserController(userLibrary)
 	absensiController := controller.NewAbsensiController(absensiLibrary)

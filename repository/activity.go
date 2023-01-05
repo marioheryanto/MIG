@@ -20,7 +20,7 @@ type ActivityRepositoryInterface interface {
 	EditActivity(request model.Activity) error
 	DeleteActivity(Id string) error
 	GetRangeActivity(from, to, id string) ([]model.Activity, error)
-	GetActivityWithId(Id interface{}) (model.Activity, error)
+	GetActivityWithId(Id interface{}, user_id string) (model.Activity, error)
 }
 
 func NewActivityRepository(db *sql.DB) ActivityRepositoryInterface {
@@ -147,11 +147,11 @@ func (r ActivityRepository) GetRangeActivity(from, to, id string) ([]model.Activ
 	return activityList, nil
 }
 
-func (r ActivityRepository) GetActivityWithId(Id interface{}) (model.Activity, error) {
+func (r ActivityRepository) GetActivityWithId(Id interface{}, user_id string) (model.Activity, error) {
 	query, args, err := squirrel.
 		Select("description, tanggal, dari, sampai, created_at, updated_at").
 		From("activities").
-		Where("id = ?", Id).ToSql()
+		Where("id = ? AND user_id = ?", Id, user_id).ToSql()
 
 	if err != nil {
 		return model.Activity{}, err

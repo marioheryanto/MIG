@@ -2,6 +2,7 @@ package library
 
 import (
 	"errors"
+	"net/http"
 	"time"
 
 	"github.com/marioheryanto/MIG/helper"
@@ -10,7 +11,8 @@ import (
 )
 
 type ActivityLibrary struct {
-	Repo repository.ActivityRepositoryInterface
+	Repo        repository.ActivityRepositoryInterface
+	AbsensiRepo repository.AbsensiRepositoryInterface
 }
 
 type ActivityLibraryInterface interface {
@@ -20,9 +22,10 @@ type ActivityLibraryInterface interface {
 	GetAll(tokenString, from, to string) (interface{}, error)
 }
 
-func NewActivityLibrary(repo repository.ActivityRepositoryInterface) ActivityLibraryInterface {
+func NewActivityLibrary(repo repository.ActivityRepositoryInterface, absensiRepo repository.AbsensiRepositoryInterface) ActivityLibraryInterface {
 	return ActivityLibrary{
-		Repo: repo,
+		Repo:        repo,
+		AbsensiRepo: absensiRepo,
 	}
 }
 
@@ -35,6 +38,16 @@ func (l ActivityLibrary) Create(tokenString string, request model.Activity) erro
 		return err
 	}
 
+	_, err = l.AbsensiRepo.GetAbsensi(request.Tanggal, claims.Issuer)
+	if err != nil {
+		serviceErr, _ := err.(model.ServiceError)
+		if serviceErr.Code == http.StatusNotFound {
+			return helper.NewServiceError(http.StatusBadRequest, "harus melakukan absensi terlebih dahulu")
+		}
+
+		return err
+	}
+
 	err = l.Repo.CreateActivity(request, claims.Issuer)
 	if err != nil {
 		return err
@@ -44,7 +57,22 @@ func (l ActivityLibrary) Create(tokenString string, request model.Activity) erro
 }
 
 func (l ActivityLibrary) Edit(tokenString string, request model.Activity) error {
-	_, err := l.Repo.GetActivityWithId(request.Id)
+	claims, err := helper.ParseTokenToClaims(tokenString)
+	if err != nil {
+		return err
+	}
+
+	_, err = l.AbsensiRepo.GetAbsensi(request.Tanggal, claims.Issuer)
+	if err != nil {
+		serviceErr, _ := err.(model.ServiceError)
+		if serviceErr.Code == http.StatusNotFound {
+			return helper.NewServiceError(http.StatusBadRequest, "harus melakukan absensi terlebih dahulu")
+		}
+
+		return err
+	}
+
+	_, err = l.Repo.GetActivityWithId(request.Id, claims.Issuer)
 	if err != nil {
 		return err
 	}
@@ -61,9 +89,23 @@ func (l ActivityLibrary) Edit(tokenString string, request model.Activity) error 
 }
 
 func (l ActivityLibrary) Delete(tokenString string, activityId string) error {
-
-	_, err := l.Repo.GetActivityWithId(activityId)
+	claims, err := helper.ParseTokenToClaims(tokenString)
 	if err != nil {
+		return err
+	}
+
+	data, err := l.Repo.GetActivityWithId(activityId, claims.Issuer)
+	if err != nil {
+		return err
+	}
+
+	_, err = l.AbsensiRepo.GetAbsensi(data.Tanggal, claims.Issuer)
+	if err != nil {
+		serviceErr, _ := err.(model.ServiceError)
+		if serviceErr.Code == http.StatusNotFound {
+			return helper.NewServiceError(http.StatusBadRequest, "harus melakukan absensi terlebih dahulu")
+		}
+
 		return err
 	}
 
